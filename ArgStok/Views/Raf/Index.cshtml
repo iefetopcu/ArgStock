@@ -1,0 +1,52 @@
+﻿@using ArgStok.Models.Entity
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+
+
+<table class="table table-bordered" id="tablo">
+    <thead>
+
+
+        <tr>
+
+            <th>RAF ADI</th>
+            <th>İŞLEM</th>
+
+
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var raf in Model)
+        {
+            <tr>
+
+                <td>@raf.rafadi</td>
+
+                <td>
+                    
+                    <a href="/Raf/RafGetir/@raf.rafid">
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+
+                    </a>
+                    <a href="/Raf/Sil/@raf.rafid" onclick="return confirm('Bu Rafı Silmek İstediğinize Emin Misiniz?')">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/DataTables/dataTables.bootstrap4.js"></script>
+<link href="~/Content/DataTables/css/dataTables.foundation.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/colReorder.bootstrap4.css" rel="stylesheet" />
+<script>
+    $('#tablo').DataTable();
+
+</script>
+<a href="/Raf/YeniRaf/" class="btn btn-primary">Yeni Raf Ekle</a>

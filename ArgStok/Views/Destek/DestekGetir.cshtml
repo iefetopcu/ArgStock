@@ -1,0 +1,98 @@
+﻿@model ArgStok.Models.Entity.destektalepleri
+@{
+    ViewBag.Title = "DestekGetir";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+
+<h2></h2>
+
+
+<table class="table table-striped">
+    <tr>
+        <td class="bg-warning">
+            Talep No
+        </td>
+        <td>
+            @Html.ValueFor(m => m.id)
+        </td>
+    </tr>
+    <tr>
+        <td class="bg-warning">
+            Konu
+        </td>
+        <td>
+            @Html.ValueFor(m => m.konubasligi)
+        </td>
+
+    </tr>
+    <tr>
+        <td class="bg-warning">
+            İçerik
+        </td>
+        <td>
+            @Html.ValueFor(m => m.konuicerigi)
+        </td>
+    </tr>
+
+    <tr>
+        <td class="bg-warning">
+            Uygulama
+        </td>
+        <td>
+            @Html.ValueFor(m => m.uygulama)
+        </td>
+    </tr>
+    <tr>
+        <td class="bg-warning">
+            Destek Verilen Personel
+        </td>
+        <td>
+
+            @Html.ValueFor(m => m.destekverilenpersonel)
+        </td>
+        <td class="bg-warning">Cep No </td>
+        <td>
+            @Html.ValueFor(m => m.personeltelefon)
+        </td>
+    </tr>
+    <tr>
+        <td class="bg-warning">
+            İl
+        </td>
+        <td>
+            @Html.ValueFor(m => m.il)
+        </td>
+        <td class="bg-warning">
+            İlçe
+        </td>
+        <td>
+            @Html.ValueFor(m => m.ilce)
+        </td>
+        <td class="bg-warning">
+            Ceza Evi
+        </td>
+        <td>
+            @Html.ValueFor(m => m.cezaevi)
+        </td>
+    </tr>
+    <tr>
+        <td class="bg-warning">
+            Destek Veren
+        </td>
+        <td>
+            @Html.ValueFor(m => m.destekveren)
+        </td>
+        <td class="bg-warning">Tarih</td>
+        <td>@Html.ValueFor(m => m.tarih)</td>
+    </tr>
+</table>
+
+
+    
+
+<a href="/Destek/Index/">
+    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+</a>
+<p>Geri Dön</p>

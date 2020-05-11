@@ -1,0 +1,36 @@
+﻿@model ArgStok.Models.Entity.stok
+@{
+    ViewBag.Title = "YeniStok";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+
+<form class="form-group" method="post">
+    <div>
+
+        <label>Ürün Adı : </label>
+        @Html.DropDownListFor(m => m.urunler.urunid, (List<SelectListItem>)ViewBag.dgr, new { @class = "form-control" })
+
+        <label>Depo : </label>
+        @Html.DropDownListFor(m => m.depo, (List<SelectListItem>)ViewBag.depo, new { @class = "form-control" })
+
+        <label>Raf : </label>
+        @Html.DropDownListFor(m => m.raf, (List<SelectListItem>)ViewBag.raf, new { @class = "form-control" })
+
+        <label>Urun Aciklama : </label>
+        <input type="text" class="form-control" name="aciklama" required/>
+        <label>Urun Miktar : </label>
+        <input type="text" class="form-control" name="adet" required/>
+
+    </div>
+    
+
+        <div style="margin-top:15px">
+            <button class="btn btn-info">Stok Ekle</button>
+        </div>
+
+    
+    
+
+
+</form>
+

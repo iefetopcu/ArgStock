@@ -1,0 +1,30 @@
+﻿@model ArgStok.Models.Entity.depo
+@{
+    ViewBag.Title = "DepoGetir";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+
+
+
+@using (Html.BeginForm("Guncelle", "depo", FormMethod.Post))
+
+{
+<div>
+    @Html.LabelFor(m => m.depoid)
+    @Html.TextBoxFor(m => m.depoid, new { @class = "form-control", @readonly = "readonly" })
+
+    <br />
+
+    @Html.LabelFor(m => m.depoadi)
+    @Html.TextBoxFor(m => m.depoadi, new { @class = "form-control" })
+
+
+</div>
+    <br />
+
+    <div>
+        <button class="btn btn-success">GÜNCELLE</button>
+       
+    </div>
+
+}

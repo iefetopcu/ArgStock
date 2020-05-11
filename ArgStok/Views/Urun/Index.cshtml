@@ -1,0 +1,59 @@
+﻿@using ArgStok.Models.Entity
+@model List<urunler>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+
+<table class="table table-bordered" id="tablo">
+    <thead>
+        <tr>
+            <th>ÜRÜN ID</th>
+            <th>ÜRÜN KODU</th>
+            <th>ÜRÜN ADI</th>
+            <th>ÜRÜN DEĞERİ</th>
+            <th>ÜRÜN KILIFI</th>
+            <th>İŞLEMLER</th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var urn in Model)
+        {
+        <tr>
+            <th>@urn.urunid</th>
+
+            <td>@urn.urunkodu</td>
+            <td>@urn.urunadi</td>
+            <td>@urn.urundegeri</td>
+            <td>@urn.urunkilifi</td>
+            <td>
+
+                <a href="/urun/UrunGetir/@urn.urunid">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+
+                </a>
+                <a href="/urun/sil/@urn.urunid" onclick="return confirm('Bu Ürünü Silmek İstediğinize Emin Misiniz?')">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+
+                </a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+<script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/DataTables/dataTables.bootstrap4.js"></script>
+<link href="~/Content/DataTables/css/dataTables.foundation.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/colReorder.bootstrap4.css" rel="stylesheet" />
+<script>
+    $('#tablo').DataTable();
+
+</script>
+<a href="/urun/yeniurun/" class="btn btn-primary">Yeni Ürün Ekle</a>
+
+
+
+

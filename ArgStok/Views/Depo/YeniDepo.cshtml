@@ -1,0 +1,23 @@
+﻿@model ArgStok.Models.Entity.depo
+@{
+    ViewBag.Title = "YeniDepo";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+
+<form class="form-group" method="post">
+    <div>
+        <label>DEPO ADI : </label>
+        @Html.TextBoxFor(m => m.depoadi, new { @class = "form-control" , @required = "required" })
+        <br />
+        
+
+
+       
+
+
+    </div>
+    <div style="margin-top:15px">
+        <button class="btn btn-info">DEPO EKLE</button>
+    </div>
+
+</form>

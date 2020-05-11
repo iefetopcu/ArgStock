@@ -1,0 +1,46 @@
+﻿@model ArgStok.Models.Entity.kullanicilar
+@{
+    ViewBag.Title = "YeniKullanici";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+
+<form class="form-group" method="post">
+    @*<div>
+        <label>Kullanıcı E-Posta : </label>
+        <input type="text" class="form-control" name="kullaniciepost" />
+        <label>Kullanıcı Adı : </label>
+        <input type="text" class="form-control" name="kullaniciadi" />
+        <label>Kullanıcı Soyadı : </label>
+        <input type="text" class="form-control" name="kullanicisoyadi" />
+        <label>Şifre : </label>
+        <input type="password" class="form-control" name="kullanicisifre" />
+
+    </div>*@
+
+    <div>
+        <label>Kullanıcı E-Posta : </label>
+        @Html.TextBoxFor(m => m.kullaniciepost, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.kullaniciepost, "", new { @style = "color:red" })
+        <br />
+        <label>Kullanıcı Adı : </label>
+        @Html.TextBoxFor(m => m.kullaniciadi, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.kullaniciadi, "", new { @style = "color:red" })
+        <br />
+        <label>Kullanıcı Soyadı : </label>
+        @Html.TextBoxFor(m => m.kullanicisoyadi, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.kullanicisoyadi, "", new { @style = "color:red" })
+        <label>Kullanıcı Yetkisi : </label>
+        @Html.TextBoxFor(m => m.yetki, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.yetki, "", new { @style = "color:red" })
+        <br />
+        <label>Kullanıcı Şifre : </label>
+        @Html.PasswordFor(m => m.kullanicisifre, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.kullanicisifre, "", new { @style = "color:red" })
+
+    </div>
+    <div style="margin-top:15px">
+        <button class="btn btn-info">Kullanıcı Ekle</button>
+    </div>
+
+</form>
+

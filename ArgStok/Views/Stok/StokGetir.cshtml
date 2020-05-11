@@ -1,0 +1,52 @@
+﻿@model ArgStok.Models.Entity.stok
+@{
+    ViewBag.Title = "StokGetir";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+
+@using (Html.BeginForm("Guncelle", "stok", FormMethod.Post))
+
+{
+
+<div>
+    @Html.LabelFor(m => m.id)
+    @Html.TextBoxFor(m => m.id, new { @class = "form-control", @readonly = "readonly" })
+
+    <br />
+    @Html.LabelFor(m => m.urunler.urunadi)
+    @Html.TextBoxFor(m => m.urunler.urunadi, new { @class = "form-control", @readonly = "readonly" })
+    <br />
+    @Html.LabelFor(m => m.urunler.urunkodu)
+    @Html.TextBoxFor(m => m.urunler.urunkodu, new { @class = "form-control", @readonly = "readonly" })
+    <br />
+    @Html.LabelFor(m => m.urunler.urundegeri)
+    @Html.TextBoxFor(m => m.urunler.urundegeri, new { @class = "form-control", @readonly = "readonly" })
+    <br />
+    @Html.LabelFor(m => m.urunler.urunkilifi)
+    @Html.TextBoxFor(m => m.urunler.urunkilifi, new { @class = "form-control", @readonly = "readonly" })
+    <br />
+    <p style=" color:brown;">Ürün bilgilerini güncellemek için ürünler kısmından işlem yapınız.</p>
+    <br />
+    <label>Depo : </label>
+    @Html.DropDownListFor(m => m.depo, (List<SelectListItem>)ViewBag.depo, new { @class = "form-control" })
+
+    <label>Raf : </label>
+    @Html.DropDownListFor(m => m.raf, (List<SelectListItem>)ViewBag.raf, new { @class = "form-control" })
+    <br />
+    <p style=" color:brown;">Depo ve Raf Bilgilerini Kontrol Et!</p>
+    <br />
+
+   
+    @Html.LabelFor(m => m.aciklama)
+    @Html.TextBoxFor(m => m.aciklama, new { @class = "form-control" })
+    <br />
+
+
+</div>
+
+
+    <div>
+        <button class="btn btn-success">GÜNCELLE</button>
+    </div>
+
+}

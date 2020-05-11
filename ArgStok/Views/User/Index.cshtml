@@ -1,0 +1,47 @@
+﻿@using ArgStok.Models.Entity
+@model List<kullanicilar>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+
+<table class="table table-bordered" id="tablo">
+    <thead>
+
+
+        <tr>
+            <th>KULLANICI ID</th>
+            <th>KULLANICI E-POSTA</th>
+            <th>KULLANICI ADI</th>
+            <th>KULLANICI SOYADI</th>
+            <th>KULLANICI YETKİSİ</th>
+            <th>İŞLEM</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var usr in Model)
+        {
+            <tr>
+                <th>@usr.id</th>
+                <td>@usr.kullaniciepost</td>
+                <td>@usr.kullaniciadi</td>
+                <td>@usr.kullanicisoyadi</td>
+                <td>@usr.yetki</td>
+                <td>
+                    <a href="/user/KullaniciGetir/@usr.id"> <i class="fa fa-pencil" aria-hidden="true"></i></a>
+                    <a href="/user/sil/@usr.id" onclick="return confirm('Bu kullanıcıyı silmek İstediğinize emin misiniz?')" > <i class="fa fa-trash" aria-hidden="true"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/DataTables/dataTables.bootstrap4.js"></script>
+<link href="~/Content/DataTables/css/dataTables.foundation.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/colReorder.bootstrap4.css" rel="stylesheet" />
+<script>
+    $('#tablo').DataTable();
+
+</script>
+<a href="/user/yenikullanici/" class="btn btn-primary">Yeni Kullanıcı Ekle</a>

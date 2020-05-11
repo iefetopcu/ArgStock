@@ -1,0 +1,72 @@
+﻿@model ArgStok.Models.Entity.kullanicilar
+@{
+    ViewBag.Title = "Giris";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+<style>
+    #klavye {
+        padding: 5px;
+    }
+
+        #klavye tr td input {
+            width: 120px;
+            height: 120px;
+        }
+
+    .container {
+        width: 800px;
+    }
+</style>
+<script>
+    function SayiYaz(Sayi) {
+        var Yazi = document.getElementById("sifrealani").value;
+        Yazi = Yazi + Sayi;
+        document.getElementById("sifrealani").value = Yazi;
+    }
+</script>
+<div class="container">
+    <div style="width:800px; ">
+        <form method="post">
+            <label>Kullanıcı E-Posta</label>
+            @Html.TextBoxFor(m => m.kullaniciepost, new { @class = "form-control", @readonly = "readonly" })
+
+            <label style="margin-top:10px;">KULLANICI ŞİFRE</label><br />
+            <input type="password" name="kullanicisifre" style="margin-top:1px;" id="sifrealani" /><br />
+
+            <div id="klavye">
+                <table>
+                    <tr>
+                        <td><input type="button" onclick="SayiYaz(1);" value="1" /></td>
+                        <td><input type="button" onclick="SayiYaz(2);" value="2" /></td>
+                        <td><input type="button" onclick="SayiYaz(3);" value="3" /></td>
+                    </tr>
+                    <tr>
+                        <td><input type="button" onclick="SayiYaz(4);" value="4" /></td>
+                        <td><input type="button" onclick="SayiYaz(5);" value="5" /></td>
+                        <td><input type="button" onclick="SayiYaz(6);" value="6" /></td>
+                    </tr>
+                    <tr>
+                        <td><input type="button" onclick="SayiYaz(7);" value="7" /></td>
+                        <td><input type="button" onclick="SayiYaz(8);" value="8" /></td>
+                        <td><input type="button" onclick="SayiYaz(9);" value="9" /></td>
+                    </tr>
+                    <tr>
+                        <td><input type="button" value="." /></td>
+                        <td><input type="button" onclick="SayiYaz(0);" value="0" /></td>
+                        <td><input type="button" value="." /></td>
+
+                    </tr>
+
+                </table>
+            </div>
+            <button class="btn btn-success" style="width:200px; height:80px;" >GİRİŞ YAP</button>
+        </form>
+
+    </div>
+    
+    <div class="modal-footer" style="text-align:center; color:brown;">
+        <h5>@ViewBag.Hata</h5>
+    </div>
+
+</div>
+

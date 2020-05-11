@@ -1,0 +1,96 @@
+﻿@model ArgStok.Models.Entity.destektalepleri
+@{
+    ViewBag.Title = "GuncelleGetir";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+
+<h2>GuncelleGetir</h2>
+
+@using (Html.BeginForm("Guncelle", "Destek", FormMethod.Post))
+
+{
+
+    <table class="table table-striped">
+        <tr>
+            <td class="bg-warning">
+                Talep No
+            </td>
+            <td>
+                @Html.TextBoxFor(m => m.id, new { @class = "form-control" , @readonly = "readonly" })
+            </td>
+        </tr>
+        <tr>
+            <td class="bg-warning">
+                Konu
+            </td>
+            <td>
+                @Html.TextBoxFor(m => m.konubasligi, new { @class = "form-control"})
+            </td>
+
+        </tr>
+        <tr>
+            <td class="bg-warning">
+                İçerik
+            </td>
+            <td>
+                @Html.TextAreaFor(m => m.konuicerigi, 10, 90, htmlAttributes: new { style = "width: 100%; max-width: 100%;" })
+            </td>
+        </tr>
+
+        <tr>
+            <td class="bg-warning">
+                Uygulama
+            </td>
+            <td>
+                @Html.TextBoxFor(m => m.uygulama, new { @class = "form-control" })
+            </td>
+        </tr>
+        <tr>
+            <td class="bg-warning">
+                Destek Verilen Personel
+            </td>
+            <td>
+
+                @Html.TextBoxFor(m => m.destekverilenpersonel, new { @class = "form-control"})
+            </td>
+            <td class="bg-warning">Cep No </td>
+            <td>
+                @Html.TextBoxFor(m => m.personeltelefon, new { @class = "form-control" })
+            </td>
+        </tr>
+        <tr>
+            <td class="bg-warning">
+                İl
+            </td>
+            <td>
+                @Html.TextBoxFor(m => m.il, new { @class = "form-control"})
+            </td>
+            <td class="bg-warning">
+                İlçe
+            </td>
+            <td>
+                @Html.TextBoxFor(m => m.ilce, new { @class = "form-control" })
+            </td>
+            <td class="bg-warning">
+                Ceza Evi
+            </td>
+            <td>
+                @Html.TextBoxFor(m => m.cezaevi, new { @class = "form-control" })
+            </td>
+        </tr>
+        <tr>
+            <td class="bg-warning">
+                Destek Veren
+            </td>
+            <td>
+                @Html.TextBoxFor(m => m.destekveren, new { @class = "form-control", @readonly = "readonly"})
+            </td>
+            <td class="bg-warning">Tarih</td>
+            <td>@Html.TextBoxFor(m => m.tarih, new { @class = "form-control", @readonly = "readonly" })</td>
+        </tr>
+    </table>
+
+    <div>
+        <button class="btn btn-success">GÜNCELLE</button>
+    </div>
+}

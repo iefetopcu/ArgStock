@@ -1,0 +1,42 @@
+﻿@model ArgStok.Models.Entity.urunler
+@{
+    ViewBag.Title = "UrunGetir";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+
+@using (Html.BeginForm("Guncelle", "Urun", FormMethod.Post))
+
+{
+<div>
+    @Html.LabelFor(m => m.urunid)
+    @Html.TextBoxFor(m => m.urunid, new { @class = "form-control" , @readonly = "readonly" })
+
+    <br />
+
+    @Html.LabelFor(m => m.urunadi)
+    @Html.TextBoxFor(m => m.urunadi, new { @class = "form-control" })
+
+    <br />
+    @Html.LabelFor(m => m.urunkodu)
+    @Html.TextBoxFor(m => m.urunkodu, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(m => m.urundegeri)
+    @Html.TextBoxFor(m => m.urundegeri, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(m => m.urunkilifi)
+    @Html.TextBoxFor(m => m.urunkilifi, new { @class = "form-control" })
+    <br />
+
+
+
+</div>
+
+    <div>
+        <button class="btn btn-success">GÜNCELLE</button>
+    </div>
+
+
+
+
+}
+

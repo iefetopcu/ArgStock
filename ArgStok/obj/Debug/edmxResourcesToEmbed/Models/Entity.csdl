@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="argdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="kullanicilar">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="kullaniciepost" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="kullaniciadi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="kullanicisoyadi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="kullanicisifre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="stok">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="urunkodu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="urunadi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="depo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="depoadres" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="urunaciklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="urunmiktar" Type="Int64" />
+  </EntityType>
+  <EntityContainer Name="argdbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="kullanicilars" EntityType="Self.kullanicilar" />
+    <EntitySet Name="stoks" EntityType="Self.stok" />
+  </EntityContainer>
+</Schema>

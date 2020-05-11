@@ -1,0 +1,24 @@
+﻿@model ArgStok.Models.Entity.raf
+@{
+    ViewBag.Title = "YeniRaf";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+
+<form class="form-group" method="post">
+    <div>
+        <label>RAF ADI : </label>
+        @Html.TextBoxFor(m => m.rafadi, new { @class = "form-control", @required = "required" })
+
+        <br />
+
+
+
+
+
+
+    </div>
+    <div style="margin-top:15px">
+        <button class="btn btn-info">RAF EKLE</button>
+    </div>
+
+</form>

@@ -1,0 +1,117 @@
+﻿@using ArgStok.Models.Entity;
+@using PagedList
+
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+<style>
+
+</style>
+
+
+
+<table class="table table-bordered" id="tablo">
+    <thead>
+        <tr>
+
+
+            <th>
+                ÜRÜN ADI
+            </th>
+            <th>
+                ÜRÜN KODU:
+            </th>
+            <th>
+                ÜRÜN DEĞERİ:
+            </th>
+            <th>
+                ÜRÜN KILIFI:
+            </th>
+            <th>
+                DEPO
+            </th>
+            <th>
+                RAF
+            </th>
+            <th>
+                ÜRÜN AÇIKLAMA
+            </th>
+            <th>
+                MİKTAR
+            </th>
+            <th>İŞLEM</th>
+        </tr>
+</thead>
+
+   
+    <tbody>
+        @foreach (var stok in Model)
+        {
+        <tr class="tablotr">
+
+            <td>
+                @stok.urunler.urunadi
+            </td>
+            <td>
+                @stok.urunler.urunkodu
+            </td>
+            <td>
+                @stok.urunler.urundegeri
+            </td>
+            <td>
+                @stok.urunler.urunkilifi
+            </td>
+            <td>
+                @stok.depo1.depoadi
+            </td>
+            <td>
+                @stok.raf1.rafadi
+            </td>
+
+            <td>
+                @stok.aciklama
+            </td>
+            <td>
+                @stok.adet
+            </td>
+            <td>
+                <a href="/stok/StokGirdi/@stok.id" class="btn btn-success">GİRİŞ</a>
+                <a href="/stok/StokCik/@stok.id" class="btn btn-danger">ÇIKIŞ</a>
+                @if (((ArgStok.Models.Entity.kullanicilar)Session["kullaniciadi"]).yetki == 1)
+                {
+                    <a href="/Stok/StokGetir/@stok.id">
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+
+                    </a>
+                    <a href="/stok/Sil/@stok.id" onclick = "return confirm('Bu Stoğu Silmek İstediğinize Emin Misiniz?')">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+
+                    </a>
+
+                    
+                }
+
+
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+@*@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Index", new { sayfa }))*@
+
+<script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/DataTables/dataTables.bootstrap4.js"></script>
+<link href="~/Content/DataTables/css/dataTables.foundation.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/colReorder.bootstrap4.css" rel="stylesheet" />
+<script>
+    $('#tablo').DataTable();
+
+</script>
+<a href="/Stok/YeniStok/" class="btn btn-primary">Yeni Stok Ekle</a>
+
+<div>
+    <a href="@Url.Action("ExporToExcel","stok")">Excele Aktar</a>
+</div>

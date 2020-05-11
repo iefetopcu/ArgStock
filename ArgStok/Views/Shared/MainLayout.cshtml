@@ -1,0 +1,316 @@
+﻿@using ArgStok.Models.Entity;
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>ARG STOK</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style class='pt-pen-css'>
+
+
+body, ul {
+  margin: 0;
+  padding: 0;
+}
+
+.anamenu {
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  height: 100%;
+  padding: .4em 0;
+  background: #000000;
+  color: white;
+  text-align: center;
+  font-size: 0;
+}
+.anamenu li {
+  pointer-events: none;
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  list-style: none;
+  line-height: 100%;
+  transform: translateZ(0);
+}
+.anamenu a {
+  pointer-events: auto;
+  position: relative;
+  display: block;
+  min-width: 5em;
+  margin-bottom: .4em;
+  padding: .4em;
+  line-height: 100%;
+  font-size: 16px;
+  text-decoration: none;
+  color: white;
+  transition: background 0.3s;
+}
+.anamenu a:active, .anamenu a:focus {
+  background: rgba(0, 0, 0, 0.65);
+}
+.anamenu i {
+  display: block;
+  margin-bottom: .2em;
+  font-size: 2em;
+}
+.anamenu span {
+  font-size: .625em;
+  font-family: sans-serif;
+  text-transform: uppercase;
+}
+.anamenu li:hover ul {
+  transform: translateX(0);
+  background: rgba(0, 0, 0, 0.65);
+}
+.anamenu > li {
+  display: block;
+}
+.anamenu > li > a {
+  background: rgba(0, 0, 0, 0.65);
+}
+.anamenu > li:hover {
+  z-index: 100;
+}
+.anamenu > li:hover a {
+  background: #808080;
+}
+.anamenu > li a:hover {
+  background: #808080;
+}
+.anamenu > li > a:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 100%;
+  width: 4px;
+  opacity: 0;
+  background: -moz-linear-gradient(left, rgba(0, 0, 0, 0.65) 0%, transparent 100%);
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(0, 0, 0, 0.65)), color-stop(100%, transparent));
+  background: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.65) 0%, transparent 100%);
+  background: -o-linear-gradient(left, rgba(0, 0, 0, 0.65) 0%, transparent 100%);
+  
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.65) 0%, transparent 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#00000000',GradientType=1 );
+  transition: opacity 0.5s;
+}
+.anamenu > li:hover a:after {
+  opacity: 1;
+}
+.anamenu > li ul {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 100%;
+  height: 100%;
+  width: auto;
+  white-space: nowrap;
+  transform: translateX(-100%);
+  background: #B44659;
+  transition: 0.5s transform;
+}
+
+
+.ild-ident {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+}
+.ild-ident svg {
+  overflow: visible;
+  transform: translateZ(0);
+}
+.ild-ident svg .circle-holder {
+  transform: translate(-7px, -7px);
+}
+.ild-ident svg .circle {
+  transform: translate(7px, 7px);
+  fill: #ff485b;
+}
+.ild-ident svg.active .i {
+  animation: initials .4s ease-in-out;
+}
+.ild-ident svg.active .l {
+  animation: initials .4s .2s ease-in-out;
+}
+.ild-ident svg.active .circle {
+  animation: circle .5s .1s ease-in-out;
+}
+#govde{
+    margin-left:60px;
+
+}
+    </style>
+</head>
+<body>
+
+    @*<nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">ARG STOK</a>
+            </div>
+            <ul class="nav navbar-nav">
+                @if (Session["kullaniciadi"] == null)
+                {
+                    <li>@Html.ActionLink("Lütfen Giriş Yapınız", "Cikis")</li>
+                }
+                else
+                {
+                    <li class="active"><a href="/Stok/Index/">Stok Takip</a></li>
+                    <li><a href="/User/Index/">Kullanıcılar</a></li>
+                    <li><a href="/Urun/Index/">Ürünler</a></li>
+                    <li><a href="/Depo/Index">Depolar</a></li>
+                    <li><a href="/Raf/Index">Raflar</a></li>
+                    <li><a href="/Log/Index">Log</a></li>
+
+                }
+
+
+            </ul>
+            <ul class="nav navbar-nav pull-right">
+                @if (Session["kullaniciadi"] == null)
+                {
+                    <li>@Html.ActionLink("Giriş", "Index", "Home")</li>
+                }
+                else
+                {
+
+                    <li>@Html.ActionLink("Çıkış", "Cikis", "Home")</li>
+                }
+
+
+            </ul>
+        </div>
+    </nav>*@
+   
+    <ul class="anamenu">
+        @if (Session["kullaniciadi"] == null)
+        {
+            @*<li>
+                <a href="/Home/Index/">
+                    <i class="fa fa-folder-open"></i>
+                    <span>GİRİŞ</span>
+                </a>
+
+            </li>*@
+
+        }
+        else
+        {
+
+            <li>
+                <a href="/Stok/Index/">
+                    <i></i>
+                    <span><img src="~/Photos/arglogo.png" style="height:50px;" /></span>
+                </a>
+
+            </li>
+
+
+            if (((ArgStok.Models.Entity.kullanicilar)Session["kullaniciadi"]).yetki == 1)
+            {
+                <li>
+                    <a href="/Urun/Index/">
+                        <i class="fa fa-bars" aria-hidden="true"></i>
+                        <span>ÜRÜNLER</span>
+                    </a>
+
+                </li>
+                <li>
+                    <a href="/Depo/Index">
+                        <i class="fa fa-archive" aria-hidden="true"></i>
+                        <span>DEPOLAR</span>
+                    </a>
+
+                </li>
+                <li>
+                    <a href="/Raf/Index">
+                        <i class="fa fa-location-arrow" aria-hidden="true"></i>
+                        <span>RAFLAR</span>
+                    </a>
+
+                </li>
+                <li>
+                    <a href="/Log/Index">
+                        <i class="fa fa-history" aria-hidden="true"></i>
+                        <span>LOG</span>
+                    </a>
+
+                </li>
+
+
+                <li>
+                    <a href="/User/Index/">
+                        <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                        <span>KULLANICILAR</span>
+                    </a>
+
+                </li>
+
+
+            }
+
+                <li>
+                    <a href="/Destek/Index/">
+                        <i class="fa fa-desktop" aria-hidden="true"></i>
+
+                        <span>DESTEK</span>
+                    </a>
+
+                </li>
+
+          
+
+
+
+            <li>
+                <a href="/Home/Cikis">
+                    <i class="fa fa-power-off" aria-hidden="true"></i>
+                    <span>ÇIKIŞ</span>
+                </a>
+
+            </li>
+
+
+
+        }
+
+
+    </ul>
+
+    <div class="container">
+        <h5 style="text-align:right;">
+            @(Session["kullaniciadi"] != null ? ((ArgStok.Models.Entity.kullanicilar)Session["kullaniciadi"]).kullaniciadi : "")
+            @(Session["kullaniciadi"] != null ? ((ArgStok.Models.Entity.kullanicilar)Session["kullaniciadi"]).kullanicisoyadi : "")
+        </h5>
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+
+        
+
+        <div id="govde">
+
+            @RenderBody()
+        </div>
+
+
+        
+
+
+
+    </div>
+
+</body>
+</html>
+

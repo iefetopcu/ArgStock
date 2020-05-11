@@ -1,0 +1,72 @@
+﻿@using ArgStok.Models.Entity
+@model List<log>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+
+<table class="table table-bordered" id="tablo">
+    <thead>
+
+
+        <tr>
+
+
+            <th>ÜRÜN ADI</th>
+            <th>ÜRÜN KODU</th>
+            <th>ÜRÜN DEĞERİ</th>
+            <th>ÜRÜN KILIFI</th>
+            <th>DEPO</th>
+            <th>RAF</th>
+            <th>İŞLEM YAPAN</th>
+            <th>GİRDİ/ÇIKTI</th>
+            <th>MİKTAR</th>
+            <th>TARİH</th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var dgr in Model)
+        {
+            <tr>
+
+                <td>@dgr.urunadi</td>
+                <th>@dgr.urunkodu</th>
+                <td>@dgr.urundegeri</td>
+                <td>@dgr.urunkilifi</td>
+                <td>@dgr.depo</td>
+                <td>@dgr.raf</td>
+
+
+                <td>@dgr.islemyapan</td>
+
+                @if (dgr.girdicikti == 0)
+                {
+                    <td style="color:brown; font-weight:bolder;">Stok Çıkışı</td>
+                }
+                else
+                {
+                    <td style="color:darkgreen; font-weight:bolder;">Stok Girişi</td>
+                }
+
+
+                <td>@dgr.miktar</td>
+                <td>@dgr.tarih</td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+<script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/DataTables/dataTables.bootstrap4.js"></script>
+<link href="~/Content/DataTables/css/dataTables.foundation.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/colReorder.bootstrap4.css" rel="stylesheet" />
+<script>
+    $('#tablo').DataTable();
+
+</script>
+<div>
+    <a href="@Url.Action("ExporToExcel","log")">Excele Aktar</a>
+</div>
+

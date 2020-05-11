@@ -1,0 +1,69 @@
+﻿@using ArgStok.Models.Entity
+@model List<destektalepleri>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+
+<table class="table table-bordered" id="tablo">
+
+    <thead>
+
+        <tr>
+            <th>Talep No</th>
+            <th>Konu</th>
+            <th>Uygulama</th>
+            <th>Personel</th>
+            <th>İl</th>
+            <th>Destek Veren</th>
+            <th>Tarih</th>
+            <th>Görüntüle</th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var talep in Model)
+        {
+            <tr style="font-size:9pt;">
+                <th>@talep.id</th>
+                <td>@talep.konubasligi</td>
+                <td>@talep.uygulama</td>
+                <td>@talep.destekverilenpersonel</td>
+                <td>@talep.il</td>
+                <td>@talep.destekveren</td>
+                <td style="font-size:7pt;">@talep.tarih</td>
+                <td>
+
+                    <a href="/Destek/DestekGetir/@talep.id">
+                        <i class="fa fa-eye" aria-hidden="true"></i>
+
+
+                    </a>
+                    <a href="/Destek/GuncelleGetir/@talep.id">
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+
+                    </a>
+                    @if (((ArgStok.Models.Entity.kullanicilar)Session["kullaniciadi"]).yetki == 1)
+                    {
+                        <a href="/Destek/Sil/@talep.id" onclick="return confirm('Bu Destek talebini silmek İstediğinize emin misiniz?')">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+
+                        </a>
+
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/DataTables/dataTables.bootstrap4.js"></script>
+<link href="~/Content/DataTables/css/dataTables.foundation.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/colReorder.bootstrap4.css" rel="stylesheet" />
+<script>
+    $('#tablo').DataTable();
+
+</script>
+<a href="/Destek/YeniDestek/" class="btn btn-primary">Destek Talebi Girişi</a>

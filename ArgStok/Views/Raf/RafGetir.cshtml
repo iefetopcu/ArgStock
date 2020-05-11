@@ -1,0 +1,28 @@
+﻿@model ArgStok.Models.Entity.raf
+@{
+    ViewBag.Title = "RafGetir";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+
+
+@using (Html.BeginForm("Guncelle", "raf", FormMethod.Post))
+{
+    <div>
+        @Html.LabelFor(m => m.rafid)
+        @Html.TextBoxFor(m => m.rafid, new { @class = "form-control", @readonly = "readonly" })
+
+        <br />
+
+        @Html.LabelFor(m => m.rafadi)
+        @Html.TextBoxFor(m => m.rafadi, new { @class = "form-control" })
+
+
+    </div>
+    <br />
+
+    <div>
+        <button class="btn btn-success">GÜNCELLE</button>
+
+    </div>
+
+}

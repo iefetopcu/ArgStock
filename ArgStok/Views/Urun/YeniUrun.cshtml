@@ -1,0 +1,36 @@
+﻿@model ArgStok.Models.Entity.urunler
+@{
+    ViewBag.Title = "YeniUrun";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+
+<form class="form-group" method="post">
+    <div>
+        <label>ÜRÜN ADI : </label>
+        @Html.TextBoxFor(m => m.urunadi, new { @class = "form-control", @required = "required" })
+        @Html.ValidationMessageFor(m => m.urunadi, "", new { @style = "color : red" })
+        <br />
+        
+
+
+        <label>ÜRÜN KODU : </label>
+        @Html.TextBoxFor(m => m.urunkodu, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.urunkodu, "", new { @style = "color : red" })
+
+        <label>ÜRÜN DEĞERİ : </label>
+        @Html.TextBoxFor(m => m.urundegeri, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.urundegeri, "", new { @style = "color : red" })
+
+        <label>ÜRÜN KILIFI : </label>
+        @Html.TextBoxFor(m => m.urunkilifi, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.urunkilifi, "", new { @style = "color : red" })
+
+
+    </div>
+    <div style="margin-top:15px">
+        <button class="btn btn-info">ÜRÜN EKLE</button>
+    </div>
+
+</form>
+
+

@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="argdbModelStoreContainer" CdmEntityContainer="argdbEntities">
+    <EntitySetMapping Name="kullanicilars">
+      <EntityTypeMapping TypeName="argdbModel.kullanicilar">
+        <MappingFragment StoreEntitySet="kullanicilar">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="kullaniciepost" ColumnName="kullaniciepost" />
+          <ScalarProperty Name="kullaniciadi" ColumnName="kullaniciadi" />
+          <ScalarProperty Name="kullanicisoyadi" ColumnName="kullanicisoyadi" />
+          <ScalarProperty Name="kullanicisifre" ColumnName="kullanicisifre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="stoks">
+      <EntityTypeMapping TypeName="argdbModel.stok">
+        <MappingFragment StoreEntitySet="stok">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="urunkodu" ColumnName="urunkodu" />
+          <ScalarProperty Name="urunadi" ColumnName="urunadi" />
+          <ScalarProperty Name="depo" ColumnName="depo" />
+          <ScalarProperty Name="depoadres" ColumnName="depoadres" />
+          <ScalarProperty Name="urunaciklama" ColumnName="urunaciklama" />
+          <ScalarProperty Name="urunmiktar" ColumnName="urunmiktar" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

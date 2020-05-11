@@ -1,0 +1,435 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="argdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="depo">
+          <Key>
+            <PropertyRef Name="depoid" />
+          </Key>
+          <Property Name="depoid" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="depoadi" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="destektalepleri">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="konubasligi" Type="varchar" MaxLength="50" />
+          <Property Name="konuicerigi" Type="varchar(max)" />
+          <Property Name="uygulama" Type="varchar" MaxLength="50" />
+          <Property Name="destekverilenpersonel" Type="varchar" MaxLength="50" />
+          <Property Name="il" Type="varchar" MaxLength="50" />
+          <Property Name="ilce" Type="varchar" MaxLength="50" />
+          <Property Name="cezaevi" Type="varchar" MaxLength="50" />
+          <Property Name="personeltelefon" Type="varchar" MaxLength="50" />
+          <Property Name="destekveren" Type="varchar" MaxLength="50" />
+          <Property Name="tarih" Type="datetime" />
+        </EntityType>
+        <EntityType Name="kullanicilar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kullaniciepost" Type="varchar" MaxLength="50" />
+          <Property Name="kullaniciadi" Type="varchar" MaxLength="50" />
+          <Property Name="kullanicisoyadi" Type="varchar" MaxLength="50" />
+          <Property Name="kullanicisifre" Type="varchar" MaxLength="50" />
+          <Property Name="yetki" Type="bigint" />
+        </EntityType>
+        <EntityType Name="log">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="urunadi" Type="varchar" MaxLength="50" />
+          <Property Name="urunkodu" Type="varchar" MaxLength="50" />
+          <Property Name="urundegeri" Type="varchar" MaxLength="50" />
+          <Property Name="depo" Type="varchar" MaxLength="50" />
+          <Property Name="raf" Type="varchar" MaxLength="50" />
+          <Property Name="girdicikti" Type="bigint" />
+          <Property Name="islemyapan" Type="varchar" MaxLength="50" />
+          <Property Name="miktar" Type="bigint" />
+          <Property Name="tarih" Type="datetime" />
+          <Property Name="urunkilifi" Type="bigint" />
+        </EntityType>
+        <EntityType Name="raf">
+          <Key>
+            <PropertyRef Name="rafid" />
+          </Key>
+          <Property Name="rafid" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rafadi" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="stok">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="urun" Type="bigint" />
+          <Property Name="depo" Type="bigint" />
+          <Property Name="raf" Type="bigint" />
+          <Property Name="aciklama" Type="varchar" MaxLength="50" />
+          <Property Name="adet" Type="bigint" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="urunler">
+          <Key>
+            <PropertyRef Name="urunid" />
+          </Key>
+          <Property Name="urunid" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="urunkodu" Type="varchar" MaxLength="50" />
+          <Property Name="urunadi" Type="varchar" MaxLength="50" />
+          <Property Name="urundegeri" Type="varchar" MaxLength="50" />
+          <Property Name="urunkilifi" Type="bigint" />
+        </EntityType>
+        <Association Name="FK_stok_depo">
+          <End Role="depo" Type="Self.depo" Multiplicity="0..1" />
+          <End Role="stok" Type="Self.stok" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="depo">
+              <PropertyRef Name="depoid" />
+            </Principal>
+            <Dependent Role="stok">
+              <PropertyRef Name="depo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_stok_raf">
+          <End Role="raf" Type="Self.raf" Multiplicity="0..1" />
+          <End Role="stok" Type="Self.stok" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="raf">
+              <PropertyRef Name="rafid" />
+            </Principal>
+            <Dependent Role="stok">
+              <PropertyRef Name="raf" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_stok_urunler">
+          <End Role="urunler" Type="Self.urunler" Multiplicity="0..1" />
+          <End Role="stok" Type="Self.stok" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="urunler">
+              <PropertyRef Name="urunid" />
+            </Principal>
+            <Dependent Role="stok">
+              <PropertyRef Name="urun" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="argdbModelStoreContainer">
+          <EntitySet Name="depo" EntityType="Self.depo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="destektalepleri" EntityType="Self.destektalepleri" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="kullanicilar" EntityType="Self.kullanicilar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="log" EntityType="Self.log" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="raf" EntityType="Self.raf" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="stok" EntityType="Self.stok" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="urunler" EntityType="Self.urunler" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_stok_depo" Association="Self.FK_stok_depo">
+            <End Role="depo" EntitySet="depo" />
+            <End Role="stok" EntitySet="stok" />
+          </AssociationSet>
+          <AssociationSet Name="FK_stok_raf" Association="Self.FK_stok_raf">
+            <End Role="raf" EntitySet="raf" />
+            <End Role="stok" EntitySet="stok" />
+          </AssociationSet>
+          <AssociationSet Name="FK_stok_urunler" Association="Self.FK_stok_urunler">
+            <End Role="urunler" EntitySet="urunler" />
+            <End Role="stok" EntitySet="stok" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="argdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="depo">
+          <Key>
+            <PropertyRef Name="depoid" />
+          </Key>
+          <Property Name="depoid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="depoadi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="stoks" Relationship="Self.FK_stok_depo" FromRole="depo" ToRole="stok" />
+        </EntityType>
+        <EntityType Name="kullanicilar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kullaniciepost" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="kullaniciadi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="kullanicisoyadi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="kullanicisifre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="yetki" Type="Int64" />
+        </EntityType>
+        <EntityType Name="log">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="urunadi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="urunkodu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="urundegeri" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="depo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="raf" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="girdicikti" Type="Int64" />
+          <Property Name="islemyapan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="miktar" Type="Int64" />
+          <Property Name="tarih" Type="DateTime" Precision="3" />
+          <Property Name="urunkilifi" Type="Int64" />
+        </EntityType>
+        <EntityType Name="raf">
+          <Key>
+            <PropertyRef Name="rafid" />
+          </Key>
+          <Property Name="rafid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rafadi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="stoks" Relationship="Self.FK_stok_raf" FromRole="raf" ToRole="stok" />
+        </EntityType>
+        <EntityType Name="stok">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="urun" Type="Int64" />
+          <Property Name="depo" Type="Int64" />
+          <Property Name="raf" Type="Int64" />
+          <Property Name="aciklama" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="adet" Type="Int64" />
+          <NavigationProperty Name="depo1" Relationship="Self.FK_stok_depo" FromRole="stok" ToRole="depo" />
+          <NavigationProperty Name="raf1" Relationship="Self.FK_stok_raf" FromRole="stok" ToRole="raf" />
+          <NavigationProperty Name="urunler" Relationship="Self.FK_stok_urunler" FromRole="stok" ToRole="urunler" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="urunler">
+          <Key>
+            <PropertyRef Name="urunid" />
+          </Key>
+          <Property Name="urunid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="urunkodu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="urunadi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="urundegeri" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="urunkilifi" Type="Int64" />
+          <NavigationProperty Name="stoks" Relationship="Self.FK_stok_urunler" FromRole="urunler" ToRole="stok" />
+        </EntityType>
+        <Association Name="FK_stok_depo">
+          <End Role="depo" Type="Self.depo" Multiplicity="0..1" />
+          <End Role="stok" Type="Self.stok" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="depo">
+              <PropertyRef Name="depoid" />
+            </Principal>
+            <Dependent Role="stok">
+              <PropertyRef Name="depo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_stok_raf">
+          <End Role="raf" Type="Self.raf" Multiplicity="0..1" />
+          <End Role="stok" Type="Self.stok" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="raf">
+              <PropertyRef Name="rafid" />
+            </Principal>
+            <Dependent Role="stok">
+              <PropertyRef Name="raf" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_stok_urunler">
+          <End Role="urunler" Type="Self.urunler" Multiplicity="0..1" />
+          <End Role="stok" Type="Self.stok" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="urunler">
+              <PropertyRef Name="urunid" />
+            </Principal>
+            <Dependent Role="stok">
+              <PropertyRef Name="urun" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="argdbstoksEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="depoes" EntityType="Self.depo" />
+          <EntitySet Name="kullanicilars" EntityType="Self.kullanicilar" />
+          <EntitySet Name="logs" EntityType="Self.log" />
+          <EntitySet Name="rafs" EntityType="Self.raf" />
+          <EntitySet Name="stoks" EntityType="Self.stok" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="urunlers" EntityType="Self.urunler" />
+          <AssociationSet Name="FK_stok_depo" Association="Self.FK_stok_depo">
+            <End Role="depo" EntitySet="depoes" />
+            <End Role="stok" EntitySet="stoks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_stok_raf" Association="Self.FK_stok_raf">
+            <End Role="raf" EntitySet="rafs" />
+            <End Role="stok" EntitySet="stoks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_stok_urunler" Association="Self.FK_stok_urunler">
+            <End Role="urunler" EntitySet="urunlers" />
+            <End Role="stok" EntitySet="stoks" />
+          </AssociationSet>
+          <EntitySet Name="destektalepleris" EntityType="argdbModel.destektalepleri" />
+        </EntityContainer>
+        <EntityType Name="destektalepleri">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="konubasligi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="konuicerigi" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="uygulama" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="destekverilenpersonel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="il" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ilce" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cezaevi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="personeltelefon" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="destekveren" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="tarih" Type="DateTime" Precision="3" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="argdbModelStoreContainer" CdmEntityContainer="argdbstoksEntities">
+          <EntitySetMapping Name="depoes">
+            <EntityTypeMapping TypeName="argdbModel.depo">
+              <MappingFragment StoreEntitySet="depo">
+                <ScalarProperty Name="depoid" ColumnName="depoid" />
+                <ScalarProperty Name="depoadi" ColumnName="depoadi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="kullanicilars">
+            <EntityTypeMapping TypeName="argdbModel.kullanicilar">
+              <MappingFragment StoreEntitySet="kullanicilar">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="kullaniciepost" ColumnName="kullaniciepost" />
+                <ScalarProperty Name="kullaniciadi" ColumnName="kullaniciadi" />
+                <ScalarProperty Name="kullanicisoyadi" ColumnName="kullanicisoyadi" />
+                <ScalarProperty Name="kullanicisifre" ColumnName="kullanicisifre" />
+                <ScalarProperty Name="yetki" ColumnName="yetki" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="logs">
+            <EntityTypeMapping TypeName="argdbModel.log">
+              <MappingFragment StoreEntitySet="log">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="urunadi" ColumnName="urunadi" />
+                <ScalarProperty Name="urunkodu" ColumnName="urunkodu" />
+                <ScalarProperty Name="urundegeri" ColumnName="urundegeri" />
+                <ScalarProperty Name="depo" ColumnName="depo" />
+                <ScalarProperty Name="raf" ColumnName="raf" />
+                <ScalarProperty Name="girdicikti" ColumnName="girdicikti" />
+                <ScalarProperty Name="islemyapan" ColumnName="islemyapan" />
+                <ScalarProperty Name="miktar" ColumnName="miktar" />
+                <ScalarProperty Name="tarih" ColumnName="tarih" />
+                <ScalarProperty Name="urunkilifi" ColumnName="urunkilifi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="rafs">
+            <EntityTypeMapping TypeName="argdbModel.raf">
+              <MappingFragment StoreEntitySet="raf">
+                <ScalarProperty Name="rafid" ColumnName="rafid" />
+                <ScalarProperty Name="rafadi" ColumnName="rafadi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="stoks">
+            <EntityTypeMapping TypeName="argdbModel.stok">
+              <MappingFragment StoreEntitySet="stok">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="urun" ColumnName="urun" />
+                <ScalarProperty Name="depo" ColumnName="depo" />
+                <ScalarProperty Name="raf" ColumnName="raf" />
+                <ScalarProperty Name="aciklama" ColumnName="aciklama" />
+                <ScalarProperty Name="adet" ColumnName="adet" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="argdbModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="urunlers">
+            <EntityTypeMapping TypeName="argdbModel.urunler">
+              <MappingFragment StoreEntitySet="urunler">
+                <ScalarProperty Name="urunid" ColumnName="urunid" />
+                <ScalarProperty Name="urunkodu" ColumnName="urunkodu" />
+                <ScalarProperty Name="urunadi" ColumnName="urunadi" />
+                <ScalarProperty Name="urundegeri" ColumnName="urundegeri" />
+                <ScalarProperty Name="urunkilifi" ColumnName="urunkilifi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="destektalepleris">
+            <EntityTypeMapping TypeName="argdbModel.destektalepleri">
+              <MappingFragment StoreEntitySet="destektalepleri">
+                <ScalarProperty Name="tarih" ColumnName="tarih" />
+                <ScalarProperty Name="destekveren" ColumnName="destekveren" />
+                <ScalarProperty Name="personeltelefon" ColumnName="personeltelefon" />
+                <ScalarProperty Name="cezaevi" ColumnName="cezaevi" />
+                <ScalarProperty Name="ilce" ColumnName="ilce" />
+                <ScalarProperty Name="il" ColumnName="il" />
+                <ScalarProperty Name="destekverilenpersonel" ColumnName="destekverilenpersonel" />
+                <ScalarProperty Name="uygulama" ColumnName="uygulama" />
+                <ScalarProperty Name="konuicerigi" ColumnName="konuicerigi" />
+                <ScalarProperty Name="konubasligi" ColumnName="konubasligi" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

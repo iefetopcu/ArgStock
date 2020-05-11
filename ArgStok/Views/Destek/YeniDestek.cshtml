@@ -1,0 +1,81 @@
+﻿@model ArgStok.Models.Entity.destektalepleri
+@{
+    ViewBag.Title = "YeniDestek";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+
+
+<div style="margin:auto; width:600px;">
+    <h2>DESTEK GİRİŞİ</h2>
+    <form class="form-group" method="post">
+        <div>
+
+            <div>
+
+                <label>BAŞLIK </label>
+                @Html.TextBoxFor(m => m.konubasligi, new { @class = "form-control", style = "width:600px;", @required = "required" })
+
+
+                <label>İÇERİK</label>
+                @Html.TextAreaFor(m => m.konuicerigi, new { @class = "form-control", style = "width:600px; height:200px;" , @required = "required" })
+            </div>
+            <br /><br />
+
+
+            <div style="float:left; height:300px;">
+                <label>Uygulama</label>
+                @Html.TextBoxFor(m => m.uygulama, new { @class = "form-control", style = "width:250px;" , @required = "required" })
+                <label>Tarih: </label>
+                <p><input type="text" id="datepicker" name="tarih" placeholder="Tarih Giriniz" required></p>
+
+            </div>
+
+            <div style="  height:300px;" class="pull-right">
+
+
+                <label>Destek Verilen Personel </label>
+                @Html.TextBoxFor(m => m.destekverilenpersonel, new { @class = "form-control", style = "width:250px; " , @required = "required" })
+
+                <label>Cep Telefonu</label>
+                @Html.TextBoxFor(m => m.personeltelefon, new { @class = "form-control", style = "width:250px;" })
+
+                <label>İl</label>
+                @Html.TextBoxFor(m => m.il, new { @class = "form-control", style = "width:250px;" })
+
+                <label>İlçe</label>
+                @Html.TextBoxFor(m => m.ilce, new { @class = "form-control", style = "width:250px;" })
+
+                <label>Cezaevi</label>
+
+                @Html.TextBoxFor(m => m.cezaevi, new { @class = "form-control", style = "width:250px;" })
+
+
+
+
+
+            </div>
+
+
+        </div>
+
+        <div style="margin-top:15px; clear:left;">
+            <button class="btn btn-info">YENİ DESTEK GİR</button>
+        </div>
+
+    </form>
+
+</div>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+    $(function () {
+        var dateNow = new Date();
+
+        $("#datepicker").datepicker({
+            dateFormat: 'dd-mm-yy'
+        }).datepicker('setDate', new Date());
+;
+    });
+</script>

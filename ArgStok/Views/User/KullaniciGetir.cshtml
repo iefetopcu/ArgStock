@@ -1,0 +1,35 @@
+﻿@model ArgStok.Models.Entity.kullanicilar
+@{
+    ViewBag.Title = "KullaniciGetir";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+
+@using (Html.BeginForm("Guncelle", "User", FormMethod.Post))
+
+{
+
+<div class="form-group">
+    @Html.LabelFor(m => m.id)
+    @Html.TextBoxFor(m => m.id, new { @class = "form-control" , @readonly = "readonly" })
+    <br />
+    @Html.LabelFor(m => m.kullaniciepost)
+    @Html.TextBoxFor(m => m.kullaniciepost, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(m => m.kullaniciadi)
+    @Html.TextBoxFor(m => m.kullaniciadi, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(m => m.kullanicisoyadi)
+    @Html.TextBoxFor(m => m.kullanicisoyadi, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(m => m.kullanicisifre)
+    @Html.TextBoxFor(m => m.kullanicisifre, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(m => m.yetki)
+    @Html.TextBoxFor(m => m.yetki, new { @class = "form-control" })
+
+</div>
+<div>
+    <button class="btn btn-success">GÜNCELLE</button>
+</div>
+}
+

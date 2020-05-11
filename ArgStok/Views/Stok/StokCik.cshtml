@@ -1,0 +1,51 @@
+﻿@model ArgStok.Models.Entity.stok
+
+
+
+@{
+    ViewBag.Title = "StokCik";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+
+@using (Html.BeginForm("StokCikar", "Stok", FormMethod.Post))
+{
+    <h4>STOKTAN ÇIKAR</h4>
+    <div class="form-group">
+        @Html.LabelFor(m => m.id)
+        @Html.TextBoxFor(m => m.id, new { @class = "form-control", @readonly = "readonly" })
+
+        <br />
+        @Html.LabelFor(m => m.urunler.urunadi)
+        @Html.TextBoxFor(m => m.urunler.urunadi, new { @class = "form-control", @readonly = "readonly" })
+        <br />
+        @Html.LabelFor(m => m.urunler.urunkodu)
+        @Html.TextBoxFor(m => m.urunler.urunkodu, new { @class = "form-control", @readonly = "readonly" })
+        <br />
+        @Html.LabelFor(m => m.urunler.urundegeri)
+        @Html.TextBoxFor(m => m.urunler.urundegeri, new { @class = "form-control", @readonly = "readonly" })
+        <br />
+        @Html.LabelFor(m => m.urunler.urunkilifi)
+        @Html.TextBoxFor(m => m.urunler.urunkilifi, new { @class = "form-control", @readonly = "readonly" })
+        <br />
+        @Html.LabelFor(m => m.depo)
+        @Html.TextBoxFor(m => m.depo1.depoadi, new { @class = "form-control", @readonly = "readonly" })
+        <br />
+        @Html.LabelFor(m => m.raf)
+        @Html.TextBoxFor(m => m.raf1.rafadi, new { @class = "form-control", @readonly = "readonly" })
+        <br />
+        @Html.LabelFor(m => m.aciklama)
+        @Html.TextBoxFor(m => m.aciklama, new { @class = "form-control", @readonly = "readonly" })
+        <br />
+        @Html.LabelFor(m => m.adet)
+        @Html.TextBoxFor(m => m.adet, new { @class = "form-control", @readonly = "readonly" })
+
+        <br />
+        <label>MİKTAR</label><br />
+        <input type="text" name="miktar" class="form-control" />
+
+    </div>
+    <div>
+        <button class="btn btn-danger">STOK ÇIKAR</button>
+    </div>
+}
+
